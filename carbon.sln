@@ -7,20 +7,25 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "carbon", "carbon\carbon.vcx
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Debug|Win32.ActiveCfg = Debug|x64
+		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Debug|Win32.Build.0 = Debug|x64
 		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Debug|x64.ActiveCfg = Debug|x64
 		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Debug|x64.Build.0 = Debug|x64
 		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Debug|x86.ActiveCfg = Debug|Win32
 		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Debug|x86.Build.0 = Debug|Win32
+		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Release|Win32.ActiveCfg = Release|x64
+		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Release|Win32.Build.0 = Release|x64
 		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Release|x64.ActiveCfg = Release|x64
 		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Release|x64.Build.0 = Release|x64
-		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Release|x86.ActiveCfg = Release|Win32
-		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Release|x86.Build.0 = Release|Win32
+		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
