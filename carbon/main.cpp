@@ -25,12 +25,14 @@ int main(int argc, char** argv) {
     }
 
 
-    /*if (!initd3d()) {
+   /* if (!initd3d()) {
         logError(CRITICAL, "Failed to initialize d3d12");
         return 1;
     }*/
     //  i kinda want to mess around with opengl more before i keep working with d3d12, i still
     //  have a lot to learn about graphics and i need to pace myself and do this the right way.
+
+    //  Might as well learn vulkan for contributions - MRD
 
 
     while (true) {

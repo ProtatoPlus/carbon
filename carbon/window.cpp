@@ -5,6 +5,7 @@
 #include <iostream>
 #include <thread>
 #include <windows.h>
+#include <glfw3.h>
 // try and create a window, if it fails return NULL
 HWND tryCreateAppWindow() {
     logMessage(INFO, "Attempting to create window");
@@ -86,16 +87,18 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
             GetCursorPos(&currentPos);
             int deltaX = currentPos.x - g_LastMousePos.x;
             int deltaY = currentPos.y - g_LastMousePos.y;
-            SetWindowPos(hwnd, NULL,
-                (int)(currentPos.x - g_LastMousePos.x),
-                (int)(currentPos.y - g_LastMousePos.y),
-                0, 0, SWP_NOSIZE | SWP_NOZORDER); // Move the window
-            g_LastMousePos = currentPos;
+            // SetWindowPos(hwnd, NULL,
+            //     (int)(currentPos.x - g_LastMousePos.x),
+            //     (int)(currentPos.y - g_LastMousePos.y),
+            //     0, 0, SWP_NOSIZE | SWP_NOZORDER); // Move the window
+            // g_LastMousePos = currentPos;
+            // shit sucks
         }
         break;
 
     case WM_DESTROY:
-        PostQuitMessage(0); // Quit the application
+
+        return NULL; // Quit the application
         break;
 
 
@@ -121,3 +124,4 @@ void handleSizeChange(HWND hwnd, UINT flag, int width, int height) {
 	int newHeight = desiredRect.bottom - desiredRect.top;
 	SetWindowPos(hwnd, NULL, 0, 0, newWidth, newHeight, SWP_NOMOVE | SWP_NOZORDER);
 }
+// Code seems to be about handleling user changing window size btw - Mrdab
