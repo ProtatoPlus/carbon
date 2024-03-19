@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="config.cpp" />
     <ClCompile Include="dx.cpp" />
     <ClCompile Include="logging.cpp" />
     <ClCompile Include="main.cpp" />

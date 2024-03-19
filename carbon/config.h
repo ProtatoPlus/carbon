@@ -1,8 +1,7 @@
 #pragma once
 #include <stdint.h>
-// this is a really big fucking hack, im gonna rewrite this later
-// edit: That time is now!
-
+#include "SimpleIni.h"
+#include "logging.h"
 
 // =========  WHAT YOU NEED TO KNOW ABOUT CONFIG  =========
 //
@@ -15,11 +14,10 @@
 // so specify your own types (and please dont do dumb things with this).
 
 class config {
-	bool initConfig(const char[]);
-	template<typename T>
-	T ReadData(const char[]);
-	template<typename T>
-	T WriteData(const char[]);
+	CSimpleIniA iniFile;
+	SI_Error rc;
+
+	bool initConfig(const char* confName);
 };
 
 static const unsigned int confWidth = 1680;
