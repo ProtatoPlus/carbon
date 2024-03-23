@@ -1,5 +1,11 @@
 #pragma once
 #include <Windows.h>
+enum osEnum {
+    UNDEFINED,
+    WIN64,
+    UNIX
+};
+static osEnum currentOs;
 HWND tryCreateAppWindow();
 static bool w_dragging;
 static POINT g_LastMousePos;

@@ -6,8 +6,17 @@
 #include <thread>
 #include <windows.h>
 #include <glfw3.h>
+
 // try and create a window, if it fails return NULL
 HWND tryCreateAppWindow() {
+
+    #ifdef _WIN64
+	    currentOs = WIN64;
+    #endif
+    #ifdef UNIX
+	    currentOs = UNIX;
+    #endif
+
     logMessage(INFO, "Attempting to create window");
 	
     HANDLE hThread = CreateThread(NULL, 0, reinterpret_cast<LPTHREAD_START_ROUTINE>(AppWindow), NULL, 0, NULL);
