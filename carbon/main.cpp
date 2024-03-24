@@ -14,11 +14,16 @@
 
 int main(int argc, char** argv) {
     FreeConsole();
-    if (!StartLog())
+    if (!StartLog()) {
         std::cout << "FAILED TO START LOG" << std::endl;
         return 0;
+    }
     logMessage(INFO, "Carbon init started.");
     
+    if (!glfwInit()) {
+        std::cerr << "glfw bad no good :(((" << std::endl;
+    }
+
     if (!tryCreateAppWindow()) {
         logError(CRITICAL, "Failed to create app window");
         return 1;

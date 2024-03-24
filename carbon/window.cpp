@@ -21,6 +21,9 @@ bool tryCreateAppWindow() {
     if (window == NULL) {
         logError(CRITICAL, "Failed to create window");
     }
+    else {
+        return true;
+    }
     return NULL;
 }
 
