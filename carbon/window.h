@@ -9,6 +9,7 @@ enum osEnum {
 static osEnum currentOs;
 bool tryCreateAppWindow();
 static GLFWwindow* window;
+void onWindowClose(GLFWwindow* window);
 // static bool w_dragging;
 // static POINT g_LastMousePos;
 // LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

@@ -1,4 +1,5 @@
 #include "util.h"
+#include "main.h"
 #include "window.h"
 #include "buildinf.h"
 #include "logging.h"
@@ -22,10 +23,18 @@ bool tryCreateAppWindow() {
         logError(CRITICAL, "Failed to create window");
     }
     else {
+        glfwSetWindowCloseCallback(window, onWindowClose);
         return true;
     }
     return NULL;
 }
+
+void onWindowClose(GLFWwindow* window) {
+    logMessage(INFO, "Closing window");
+    closeEngine();
+    glfwDestroyWindow(window);
+}
+
 
 //fuck this, this actually really sucks.
 // DWORD WINAPI AppWindow(LPVOID lpParam) {

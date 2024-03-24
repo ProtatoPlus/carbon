@@ -29,6 +29,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    mainLoop = true;
 
     /* if (!initd3d()) {
         logError(CRITICAL, "Failed to initialize d3d12");
@@ -39,9 +40,14 @@ int main(int argc, char** argv) {
 
     //  Might as well learn vulkan for contributions - MRD
 
+    while (mainLoop) {
 
-    while (true) {
         glfwPollEvents();
         Sleep(1);
     }
+    return 42;
+}
+
+void closeEngine() {
+    mainLoop = false;
 }
