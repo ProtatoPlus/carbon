@@ -1,5 +1,2 @@
 ﻿  main.cpp
-  window.cpp
-  Generating Code...
-D:\Dev\crbn\carbon\window.cpp(124,1): warning C4715: 'WindowProc': not all control paths return a value
   carbon.vcxproj -> D:\Dev\crbn\x64\Debug\carbon.exe

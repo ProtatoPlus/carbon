@@ -9,23 +9,23 @@
 #include <iostream>
 #include "dx.h"
 #include "window.h"
-#define D3DCOMPILE_DEBUG 1
 #pragma comment(lib, "dxgi")
 #pragma comment(lib, "d3d12")
 
 int main(int argc, char** argv) {
     FreeConsole();
     if (!StartLog())
+        std::cout << "FAILED TO START LOG" << std::endl;
         return 0;
     logMessage(INFO, "Carbon init started.");
     
-    if (tryCreateAppWindow() == NULL) {
+    if (!tryCreateAppWindow()) {
         logError(CRITICAL, "Failed to create app window");
         return 1;
     }
 
 
-   /* if (!initd3d()) {
+    /* if (!initd3d()) {
         logError(CRITICAL, "Failed to initialize d3d12");
         return 1;
     }*/
