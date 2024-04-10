@@ -66,7 +66,7 @@ bool compileShaders() {
 	if (!success)
 	{
 		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		logError(HIGH, "ERROR::SHADER::VERTEX::COMPILATION_FAILED");
+		logError(HIGH, "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED");
 		return false;
 	}
 	logMessage(INFO, "Compiled fragment shader");
