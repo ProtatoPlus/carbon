@@ -1,8 +1,8 @@
-#include "util.h"
-#include "main.h"
+#include "../util/util.h"
+#include "../main.h"
 #include "window.h"
-#include "buildinf.h"
-#include "logging.h"
+#include "../util/buildinf.h"
+#include "../util/logging.h"
 #include <iostream>
 #include <thread>
 #include <windows.h>
@@ -23,16 +23,29 @@ bool tryCreateAppWindow() {
         logError(CRITICAL, "Failed to create window");
     }
     else {
+        glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
         glfwSetWindowCloseCallback(window, onWindowClose);
+        glfwMakeContextCurrent(window);
         return true;
     }
     return NULL;
 }
 
-void onWindowClose(GLFWwindow* window) {
+void onWindowClose(GLFWwindow* pWindow) {
     logMessage(INFO, "Closing window");
     closeEngine();
-    glfwDestroyWindow(window);
+    glfwTerminate();
+    glfwDestroyWindow(pWindow);
+}
+
+void windowLoop() {
+    doRender();
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+}
+
+void framebufferSizeCallback(GLFWwindow* pWindow, int iWidth, int iHeight) {
+    glViewport(0, 0, iWidth, iHeight);
 }
 
 

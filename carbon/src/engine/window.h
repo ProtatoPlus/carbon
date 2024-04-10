@@ -1,6 +1,9 @@
 #pragma once
-#include <Windows.h>
+#include <glad.h>
 #include <glfw3.h>
+#include "../render/opengl.h"
+#pragma comment(lib, "opengl32")
+#pragma comment(lib, "glu32")
 enum osEnum {
     UNDEFINED,
     WIN64,
@@ -9,7 +12,9 @@ enum osEnum {
 static osEnum currentOs;
 bool tryCreateAppWindow();
 static GLFWwindow* window;
+void framebufferSizeCallback(GLFWwindow* pWindow, int iWidth, int iHeight);
 void onWindowClose(GLFWwindow* window);
+void windowLoop();
 // static bool w_dragging;
 // static POINT g_LastMousePos;
 // LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

@@ -82,10 +82,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)include\KHR;$(ProjectDir)include\glfw;$(ProjectDir)include\glad;$(WindowsSDK_IncludePath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(WindowsSDK_LibraryPath)\x64;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -96,12 +98,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)include\KHR;$(ProjectDir)include\glfw;$(ProjectDir)include\glad;$(WindowsSDK_IncludePath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(WindowsSDK_LibraryPath)\x64;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -110,7 +114,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.22621.0;$(ProjectDir)lib\glfw;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)include\glad;$(ProjectDir)include\glfw;$(ProjectDir)include\KHR;C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.22621.0;$(ProjectDir)lib\glfw;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -118,7 +122,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
       <AdditionalOptions>/NODEFAULTLIB:library; %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>"$(ProjectDir)lib\glfw\glfw3.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"$(ProjectDir)include\glfw\glfw3.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>;C:\Users\robo6\source\repos\carbon\carbon\include\glfw</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -129,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.22621.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)include\glad;$(ProjectDir)include\glfw;$(ProjectDir)include\KHR;C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.22621.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,26 +142,32 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.22621.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.22621.0;%(AdditionalLibraryDirectories);C:\Users\robo6\source\repos\carbon\carbon\include\glfw</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="config.cpp" />
-    <ClCompile Include="dx.cpp" />
-    <ClCompile Include="logging.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="util.cpp" />
-    <ClCompile Include="window.cpp" />
+    <ClCompile Include="src/util/config.cpp" />
+    <ClCompile Include="src/glad.c" />
+    <ClCompile Include="src/util/logging.cpp" />
+    <ClCompile Include="src/main.cpp" />
+    <ClCompile Include="src/render/opengl.cpp" />
+    <ClCompile Include="src/util/util.cpp" />
+    <ClCompile Include="src/engine/window.cpp" />
+    <ClCompile Include="src\ConvertUTF.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="buildinf.h" />
-    <ClInclude Include="config.h" />
-    <ClInclude Include="dx.h" />
-    <ClInclude Include="logging.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="util.h" />
-    <ClInclude Include="window.h" />
+    <ClInclude Include="src/util/buildinf.h" />
+    <ClInclude Include="src/util/config.h" />
+    <ClInclude Include="src/glad.h" />
+    <ClInclude Include="src/khrplatform.h" />
+    <ClInclude Include="src/util/logging.h" />
+    <ClInclude Include="src\ConvertUTF.h" />
+    <ClInclude Include="src\main.h" />
+    <ClInclude Include="src/render/opengl.h" />
+    <ClInclude Include="src/util/util.h" />
+    <ClInclude Include="src/engine/window.h" />
+    <ClInclude Include="src\util\SimpleIni.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

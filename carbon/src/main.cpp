@@ -5,12 +5,13 @@
 #include "combaseapi.h"
 #include "wlclient.h"
 #include <wrl/client.h>
-#include "logging.h"
+#include "util/logging.h"
 #include <iostream>
-#include "dx.h"
-#include "window.h"
-#pragma comment(lib, "dxgi")
-#pragma comment(lib, "d3d12")
+#include "engine/window.h"
+//#pragma comment(lib, "dxgi")
+//#pragma comment(lib, "d3d12")
+
+// we will need to rewrite out entrypoint later on, fine for now though.
 
 int main(int argc, char** argv) {
     FreeConsole();
@@ -20,9 +21,14 @@ int main(int argc, char** argv) {
     }
     logMessage(INFO, "Carbon init started.");
     
+
+    // we need to handle glfw initilization in a seperate class, possibly a generic "Engine" class to handle basics?
     if (!glfwInit()) {
         std::cerr << "glfw bad no good :(((" << std::endl;
     }
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     if (!tryCreateAppWindow()) {
         logError(CRITICAL, "Failed to create app window");
@@ -41,8 +47,7 @@ int main(int argc, char** argv) {
     //  Might as well learn vulkan for contributions - MRD
 
     while (mainLoop) {
-
-        glfwPollEvents();
+        windowLoop();
         Sleep(1);
     }
     return 42;
