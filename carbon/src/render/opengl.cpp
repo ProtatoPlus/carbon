@@ -1,4 +1,5 @@
 #include "opengl.h"
+#include <glad/glad.h>
 
 bool initGL() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {

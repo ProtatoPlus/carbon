@@ -46,6 +46,10 @@ int main(int argc, char** argv) {
 
     //  Might as well learn vulkan for contributions - MRD
 
+    if (!initGL()) {
+        return 1;
+    }
+
     while (mainLoop) {
         windowLoop();
         Sleep(1);
