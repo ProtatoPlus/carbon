@@ -22,5 +22,5 @@ void logMessage(type logType, const char* message) {
 void logError(severity severityLevel, const char* message) {
 	char buffer[sizeof(message)*10];
 	sprintf_s(buffer, "ERROR :: %s :: %1f || %s", severityStrs[severityLevel], difftime(time(0), start), message);
-	std::cout << buffer << std::endl;
+	std::cerr << buffer << std::endl;
 }

@@ -2,6 +2,9 @@
 #include <glad.h>
 #include <glfw3.h>
 #include "../render/opengl.h"
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_opengl3.h>
+#include <imgui/imgui_impl_glfw.h>
 #pragma comment(lib, "opengl32")
 #pragma comment(lib, "glu32")
 enum osEnum {

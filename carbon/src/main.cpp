@@ -8,6 +8,7 @@
 #include "util/logging.h"
 #include <iostream>
 #include "engine/window.h"
+#include "shading.h"
 //#pragma comment(lib, "dxgi")
 //#pragma comment(lib, "d3d12")
 
@@ -17,10 +18,9 @@ int main(int argc, char** argv) {
     FreeConsole();
     if (!StartLog()) {
         std::cout << "FAILED TO START LOG" << std::endl;
-        return 0;
+        return 1;
     }
     logMessage(INFO, "Carbon init started.");
-    
 
     // we need to handle glfw initilization in a seperate class, possibly a generic "Engine" class to handle basics?
     if (!glfwInit()) {
@@ -50,7 +50,18 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    if (!initImgui()) {
+        return 1;
+    }
+
+    if (!loadAndCompile("shaders\\shaders.json")) {
+        logError(LOW, "Failed to compile shaders");
+    }
+
+    printf("id of retrieved shader: %i", getShader(0).ID);
+
     while (mainLoop) {
+
         windowLoop();
         Sleep(1);
     }

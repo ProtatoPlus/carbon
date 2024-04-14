@@ -1,19 +1,18 @@
 #include "opengl.h"
+#include "../shading.h"
 #include <glad/glad.h>
+#include "../ui.h"
+
+double frameStats::frameTime;
 
 bool initGL() {
+	renderVAODebug = true;
 	logMessage(INFO, "OpenGL init");
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		logError(CRITICAL, "Failed to initialize GLAD");
 		return false;
 	}
 	glViewport(0, 0, 800, 600);
-
-	compileShaders();
-
-	if (!createShaderProgram()) {
-		return false;
-	}
 
 	debugGeometry();
 
@@ -24,70 +23,6 @@ bool initGL() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
-	return true;
-}
-
-bool compileShaders() {
-	const char* vertexShaderSource = "#version 330 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
-		"void main()\n"
-		"{\n"
-		"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-		"}\0";
-	const char* fragmentShaderSource = "#version 330 core\n"
-		"out vec4 FragColor;\n"
-		"void main()\n"
-		"{\n"
-		"	FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-		"}\n";
-
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-
-	int  success;
-	char infoLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-
-	if (!success)
-	{
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		logError(HIGH, "ERROR::SHADER::VERTEX::COMPILATION_FAILED");
-		return false;
-	}
-	logMessage(INFO, "Compiled vertex shader");
-
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-
-	if (!success)
-	{
-		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		logError(HIGH, "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED");
-		return false;
-	}
-	logMessage(INFO, "Compiled fragment shader");
-}
-
-bool createShaderProgram() {
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-	int  success;
-	char infoLog[512];
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-	if (!success) {
-		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		logError(HIGH, "Failed to create shader program");
-		return false;
-	}
-	logMessage(INFO, "Created shader program");
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
 	return true;
 }
 
@@ -105,10 +40,35 @@ void debugGeometry() {
 }
 
 void doRender() {
+	//onFrameStart();
+	renderUi();
+
 	glClearColor(0.2f, 0.3f, 0.3f, 0.1f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	glUseProgram(shaderProgram);
+	Shader testShader = getShader(0);
+
+	glUseProgram(testShader.shaderProgram);
+	testShader.setVec4("baseColor", v0Color);
 	glBindVertexArray(VAO);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+
+	if (renderVAODebug) {
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+	}
+
+	//onFrameEnd();
+	
+	
+
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+void onFrameStart() {
+	frameStartTime = glfwGetTime();
+}
+
+void onFrameEnd() {
+	frameEndTime = glfwGetTime();
+	double newFrameTime = frameEndTime - frameStartTime;
+	currentFrameStats.frameTime += newFrameTime;
 }

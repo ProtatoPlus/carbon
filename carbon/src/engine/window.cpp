@@ -1,6 +1,6 @@
+#include "window.h"
 #include "../util/util.h"
 #include "../main.h"
-#include "window.h"
 #include "../util/buildinf.h"
 #include "../util/logging.h"
 #include <iostream>
@@ -17,8 +17,10 @@ bool tryCreateAppWindow() {
         currentOs = UNIX;
     #endif
 
+    
+
     logMessage(INFO, "Attempting to create window");
-    window = glfwCreateWindow(640, 480, "Carbon", NULL, NULL);
+    window = glfwCreateWindow(800, 600, "Carbon", NULL, NULL);
     if (window == NULL) {
         logError(CRITICAL, "Failed to create window");
     }
@@ -26,6 +28,9 @@ bool tryCreateAppWindow() {
         glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
         glfwSetWindowCloseCallback(window, onWindowClose);
         glfwMakeContextCurrent(window);
+        ImGui::CreateContext();
+        ImGuiIO& io = ImGui::GetIO(); (void)io;
+        ImGui_ImplGlfw_InitForOpenGL(window, true);
         return true;
     }
     return NULL;
