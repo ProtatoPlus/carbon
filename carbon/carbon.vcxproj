@@ -155,16 +155,16 @@
     <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="include\imgui\imgui_tables.cpp" />
     <ClCompile Include="include\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="src\shading.cpp" />
+    <ClCompile Include="src\render\shading.cpp" />
     <ClCompile Include="src/util/config.cpp" />
-    <ClCompile Include="src/glad.c" />
-    <ClCompile Include="src/util/logging.cpp" />
+    <ClCompile Include="src\render\glad\glad.c" />
+    <ClCompile Include="src\util\logging.cpp" />
     <ClCompile Include="src/main.cpp" />
     <ClCompile Include="src/render/opengl.cpp" />
     <ClCompile Include="src/util/util.cpp" />
     <ClCompile Include="src/engine/window.cpp" />
     <ClCompile Include="src\ConvertUTF.c" />
-    <ClCompile Include="src\ui.cpp" />
+    <ClCompile Include="src\render\ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\glad\glad.h" />
@@ -225,19 +225,19 @@
     <ClInclude Include="include\nlohmann\ordered_map.hpp" />
     <ClInclude Include="include\nlohmann\thirdparty\hedley\hedley.hpp" />
     <ClInclude Include="include\nlohmann\thirdparty\hedley\hedley_undef.hpp" />
-    <ClInclude Include="src\shading.h" />
+    <ClInclude Include="src\render\shading.h" />
     <ClInclude Include="src/util/buildinf.h" />
     <ClInclude Include="src/util/config.h" />
-    <ClInclude Include="src/glad.h" />
+    <ClInclude Include="src\render\glad\glad.h" />
     <ClInclude Include="src/khrplatform.h" />
-    <ClInclude Include="src/util/logging.h" />
+    <ClInclude Include="src\util\logging.h" />
     <ClInclude Include="src\ConvertUTF.h" />
     <ClInclude Include="src\main.h" />
     <ClInclude Include="src/render/opengl.h" />
     <ClInclude Include="src/util/util.h" />
     <ClInclude Include="src/engine/window.h" />
     <ClInclude Include="src\util\SimpleIni.h" />
-    <ClInclude Include="src\ui.h" />
+    <ClInclude Include="src\render\ui.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="x64\shaders\0\frag.glsl" />

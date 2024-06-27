@@ -1,5 +1,5 @@
 #include "ui.h"
-#include "render/opengl.h"
+#include "opengl.h"
 
 bool initImgui() {
 	ImGui::StyleColorsDark();

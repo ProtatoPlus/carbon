@@ -1,7 +1,7 @@
 #pragma once
 #include "../util/logging.h"
 #include "../engine/window.h"
-#include "../ui.h"
+#include "../render/ui.h"
 #include "../../include/glfw/glfw3.h"
 static unsigned int vertexShader;
 static unsigned int fragmentShader;

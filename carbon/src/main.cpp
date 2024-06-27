@@ -8,7 +8,7 @@
 #include "util/logging.h"
 #include <iostream>
 #include "engine/window.h"
-#include "shading.h"
+#include "render/shading.h"
 //#pragma comment(lib, "dxgi")
 //#pragma comment(lib, "d3d12")
 

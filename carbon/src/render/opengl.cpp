@@ -1,7 +1,7 @@
 #include "opengl.h"
-#include "../shading.h"
+#include "../render/shading.h"
 #include <glad/glad.h>
-#include "../ui.h"
+#include "../render/ui.h"
 
 double frameStats::frameTime;
 
@@ -39,6 +39,8 @@ void debugGeometry() {
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 }
 
+
+//wip, need to redesign the render loop, also need to handle ui better.
 void doRender() {
 	//onFrameStart();
 	renderUi();

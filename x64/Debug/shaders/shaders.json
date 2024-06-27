@@ -1,0 +1,11 @@
+{
+  "shaderList": [
+    {
+      "shaderId": "0",
+      "shaderDat": {
+        "vertex": "shaders\\0\\vert.glsl",
+        "fragment": "shaders\\0\\frag.glsl"
+      }
+    }
+  ]
+}

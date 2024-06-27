@@ -18,10 +18,10 @@
     <ClCompile Include="src/util/config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src/glad.c">
+    <ClCompile Include="src\render\glad\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src/util/logging.cpp">
+    <ClCompile Include="src\util\logging.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src/main.cpp">
@@ -39,10 +39,10 @@
     <ClCompile Include="src\ConvertUTF.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\shading.cpp">
+    <ClCompile Include="src\render\shading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ui.cpp">
+    <ClCompile Include="src\render\ui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="include\imgui\imgui.cpp">
@@ -77,13 +77,13 @@
     <ClInclude Include="src/util/config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src/glad.h">
+    <ClInclude Include="src\render\glad\glad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src/khrplatform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src/util/logging.h">
+    <ClInclude Include="src\util\logging.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\main.h">
@@ -104,10 +104,10 @@
     <ClInclude Include="src\ConvertUTF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\shading.h">
+    <ClInclude Include="src\render\shading.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ui.h">
+    <ClInclude Include="src\render\ui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\imgui\imconfig.h">
@@ -284,5 +284,9 @@
     <ClInclude Include="include\nlohmann\ordered_map.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="x64\shaders\0\frag.glsl" />
+    <None Include="x64\shaders\0\vert.glsl" />
   </ItemGroup>
 </Project>

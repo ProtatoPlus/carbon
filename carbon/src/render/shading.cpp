@@ -2,7 +2,7 @@
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include <nlohmann/json.hpp>
-#include "util/logging.h"
+#include "../util/logging.h"
 #include <fstream>
 #include <filesystem>
 
@@ -103,6 +103,7 @@ void Shader::setFloat(const std::string& name, float value) const
 void Shader::setVec4(const std::string& name, float value[4]) const
 {
 	glUniform4f(glGetUniformLocation(shaderProgram, name.c_str()), value[0], value[1], value[2], value[3]);
+	//glUniform4f(glGetUniformLocation(this->shaderProgram, name.c_str()), 1, 1, 1, 1);
 }
 
 bool loadAndCompile(const char* indexFile) {
