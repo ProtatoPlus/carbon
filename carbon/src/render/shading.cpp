@@ -93,6 +93,7 @@ Shader::Shader(const char* vert, const char* frag, unsigned int shaderID) {
 
 	int success;
 	char infoLog[1024];
+	bool fallbackFlag0 = false;bool fallbackFlag1 = false;
 	fallbackState fallback = NONE;
 
 	vertexBuild = glCreateShader(GL_VERTEX_SHADER);
@@ -101,7 +102,7 @@ Shader::Shader(const char* vert, const char* frag, unsigned int shaderID) {
 	glGetShaderiv(vertexBuild, GL_COMPILE_STATUS, &success);
 	if (!success) {
 		logError(LOW, "Error while compiling vertex shader source, using backup");
-		fallback = VERT;
+		fallbackFlag0 = true;
 	}
 	else {
 		logMessage(INFO, "Compiled vertex shader.");
@@ -113,7 +114,7 @@ Shader::Shader(const char* vert, const char* frag, unsigned int shaderID) {
 	glGetShaderiv(fragmentBuild, GL_COMPILE_STATUS, &success);
 	if (!success) {
 		logError(LOW, "Error while compiling fragment shader source, using backup");
-		fallback = FRAG;
+		fallbackFlag1 = true;
 	}
 	else {
 		logMessage(INFO, "Compiled fragment shader");
@@ -122,26 +123,27 @@ Shader::Shader(const char* vert, const char* frag, unsigned int shaderID) {
 	shaderProgram = glCreateProgram();
 	
 
-	// bad, need to fix
-	switch (fallback) {
-		case VERT:
+	logMessage(INFO, "linking shader program");
+
+	if (fallbackFlag0 || fallbackFlag1) {
+		if (fallbackFlag0 && !fallbackFlag1) {
 			glAttachShader(shaderProgram, compileBackupShader(VERT));
 			glAttachShader(shaderProgram, fragmentBuild);
-			break;
-		case FRAG:
+		}
+		if (!fallbackFlag0 && fallbackFlag1) {
 			glAttachShader(shaderProgram, vertexBuild);
 			glAttachShader(shaderProgram, compileBackupShader(FRAG));
-			break;
-		case COMPUTE:
-			// todo
-			break;
-		case NONE:
-			logMessage(INFO, "linking shader program");
-			glAttachShader(shaderProgram, vertexBuild);
-			glAttachShader(shaderProgram, fragmentBuild);
-			break;
+		}
+		else {
+			glAttachShader(shaderProgram, compileBackupShader(VERT));
+			glAttachShader(shaderProgram, compileBackupShader(FRAG));
+		}
 	}
-	
+	else {
+		glAttachShader(shaderProgram, vertexBuild);
+		glAttachShader(shaderProgram, fragmentBuild);
+	}
+
 	glLinkProgram(shaderProgram);
 
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
