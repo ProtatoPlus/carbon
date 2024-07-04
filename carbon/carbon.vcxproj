@@ -158,6 +158,7 @@
     <ClCompile Include="src\render\shading.cpp" />
     <ClCompile Include="src/util/config.cpp" />
     <ClCompile Include="src\render\glad\glad.c" />
+    <ClCompile Include="src\texture\texture.cpp" />
     <ClCompile Include="src\util\logging.cpp" />
     <ClCompile Include="src/main.cpp" />
     <ClCompile Include="src/render/opengl.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="src/util/config.h" />
     <ClInclude Include="src\render\glad\glad.h" />
     <ClInclude Include="src/khrplatform.h" />
+    <ClInclude Include="src\texture\texture.h" />
     <ClInclude Include="src\util\logging.h" />
     <ClInclude Include="src\ConvertUTF.h" />
     <ClInclude Include="src\main.h" />

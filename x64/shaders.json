@@ -1,0 +1,19 @@
+{
+  "shaderList": [
+    {
+      "shaderId": "0",
+      "shaderDat": {
+        "sourceFiles": [
+          {
+            "type": "vertex",
+            "path": "shaders/0/vert.glsl"
+          },
+          {
+            "type": "fragment",
+            "path": "shaders/0/frag.glsl"
+          }
+        ]
+      }
+    }
+  ]
+}

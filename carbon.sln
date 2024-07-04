@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "carbon", "carbon\carbon.vcxproj", "{7A82A071-046B-4C72-B105-ADDDD2D3FA34}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "carbon-utils", "carbon-utils\carbon-utils.vcxproj", "{189E43A8-725B-4FED-8920-D86092D15124}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -26,6 +28,18 @@ Global
 		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Release|x64.ActiveCfg = Release|x64
 		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Release|x64.Build.0 = Release|x64
 		{7A82A071-046B-4C72-B105-ADDDD2D3FA34}.Release|x86.ActiveCfg = Release|x64
+		{189E43A8-725B-4FED-8920-D86092D15124}.Debug|Win32.ActiveCfg = Debug|Win32
+		{189E43A8-725B-4FED-8920-D86092D15124}.Debug|Win32.Build.0 = Debug|Win32
+		{189E43A8-725B-4FED-8920-D86092D15124}.Debug|x64.ActiveCfg = Debug|x64
+		{189E43A8-725B-4FED-8920-D86092D15124}.Debug|x64.Build.0 = Debug|x64
+		{189E43A8-725B-4FED-8920-D86092D15124}.Debug|x86.ActiveCfg = Debug|Win32
+		{189E43A8-725B-4FED-8920-D86092D15124}.Debug|x86.Build.0 = Debug|Win32
+		{189E43A8-725B-4FED-8920-D86092D15124}.Release|Win32.ActiveCfg = Release|Win32
+		{189E43A8-725B-4FED-8920-D86092D15124}.Release|Win32.Build.0 = Release|Win32
+		{189E43A8-725B-4FED-8920-D86092D15124}.Release|x64.ActiveCfg = Release|x64
+		{189E43A8-725B-4FED-8920-D86092D15124}.Release|x64.Build.0 = Release|x64
+		{189E43A8-725B-4FED-8920-D86092D15124}.Release|x86.ActiveCfg = Release|Win32
+		{189E43A8-725B-4FED-8920-D86092D15124}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

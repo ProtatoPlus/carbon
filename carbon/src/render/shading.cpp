@@ -6,6 +6,49 @@
 #include <fstream>
 #include <filesystem>
 
+const char* vertexBackupSource = "#version 330 core\n"
+"layout (location = 0) in vec3 aPos;\n"
+"void main()\n"
+"{\n"
+"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"}\0";
+const char* fragmentBackupSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main()\n"
+"{\n"
+"	FragColor = vec4(1.0f, 0.0, 1.0f, 1.0f);\n"
+"}\0";
+
+unsigned int compileBackupShader(fallbackState backupType) {
+	unsigned int shaderOut;
+	int success;
+	switch (backupType) {
+
+	case VERT:
+		shaderOut = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(shaderOut, 1, &vertexBackupSource, NULL);
+		glCompileShader(shaderOut);
+		glGetShaderiv(shaderOut, GL_COMPILE_STATUS, &success);
+		if (!success) {
+			logError(HIGH, "A backup vertex shader failed to compile, something is very wrong.");
+			return NULL;
+		}
+		logMessage(INFO, "Compiled backup vertex shader.");
+		return shaderOut;
+
+	case FRAG:
+		shaderOut = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(shaderOut, 1, &fragmentBackupSource, NULL);
+		glCompileShader(shaderOut);
+		glGetShaderiv(shaderOut, GL_COMPILE_STATUS, &success);
+		if (!success) {
+			logError(HIGH, "A backup fragment shader failed to compile, something is very wrong.");
+			return NULL;
+		}
+		logMessage(INFO, "Compiled backup fragment shader.");
+		return shaderOut;
+	}
+}
 
 using json = nlohmann::json;
 
@@ -46,43 +89,71 @@ Shader::Shader(const char* vert, const char* frag, unsigned int shaderID) {
 	const char* vertShaderCode = vertCode.c_str();
 	const char* fragShaderCode = fragCode.c_str();
 
-	unsigned int vertex, fragment;
+	unsigned int vertexBuild, fragmentBuild;
+
 	int success;
 	char infoLog[1024];
+	fallbackState fallback = NONE;
 
-	vertex = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertex, 1, &vertShaderCode, NULL);
-	glCompileShader(vertex);
-	glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
+	vertexBuild = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexBuild, 1, &vertShaderCode, NULL);
+	glCompileShader(vertexBuild);
+	glGetShaderiv(vertexBuild, GL_COMPILE_STATUS, &success);
 	if (!success) {
-		logError(LOW, "Error while compiling vertex shader source");
-		return;
+		logError(LOW, "Error while compiling vertex shader source, using backup");
+		fallback = VERT;
 	}
-	logMessage(INFO, "Compiled vertex shader.");
+	else {
+		logMessage(INFO, "Compiled vertex shader.");
+	}
 
-	fragment = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragment, 1, &fragShaderCode, NULL);
-	glCompileShader(fragment);
-	glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
+	fragmentBuild = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentBuild, 1, &fragShaderCode, NULL);
+	glCompileShader(fragmentBuild);
+	glGetShaderiv(fragmentBuild, GL_COMPILE_STATUS, &success);
 	if (!success) {
-		logError(LOW, "Error while compiling fragment shader source");
-		return;
+		logError(LOW, "Error while compiling fragment shader source, using backup");
+		fallback = FRAG;
 	}
-	logMessage(INFO, "Compiled fragment shader");
+	else {
+		logMessage(INFO, "Compiled fragment shader");
+	}
 
 	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertex);
-	glAttachShader(shaderProgram, fragment);
+	
+
+	// bad, need to fix
+	switch (fallback) {
+		case VERT:
+			glAttachShader(shaderProgram, compileBackupShader(VERT));
+			glAttachShader(shaderProgram, fragmentBuild);
+			break;
+		case FRAG:
+			glAttachShader(shaderProgram, vertexBuild);
+			glAttachShader(shaderProgram, compileBackupShader(FRAG));
+			break;
+		case COMPUTE:
+			// todo
+			break;
+		case NONE:
+			logMessage(INFO, "linking shader program");
+			glAttachShader(shaderProgram, vertexBuild);
+			glAttachShader(shaderProgram, fragmentBuild);
+			break;
+	}
+	
 	glLinkProgram(shaderProgram);
 
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+
 	if (!success) {
 		logError(LOW, "Failed to link shader program");
+		return;
 	}
 	logMessage(INFO, "Linked shader program");
 
-	glDeleteShader(vertex);
-	glDeleteShader(fragment);
+	glDeleteShader(vertexBuild);
+	glDeleteShader(fragmentBuild);
 }
 
 void Shader::useShader() {
@@ -111,6 +182,12 @@ bool loadAndCompile(const char* indexFile) {
 	shaderUtil = ShaderUtil();
 
 	logMessage(INFO, "Starting shader compilation...");
+
+	/*logMessage(INFO, "Starting backup shader compilation...");*/
+
+	/*if (!compileBackupShaders()) {
+		logError(HIGH, "One or more backup shaders failed to compile.");
+	}*/
 
 	if (indexFile == NULL) {
 		logError(LOW, "No shader index file supplied to compiler");

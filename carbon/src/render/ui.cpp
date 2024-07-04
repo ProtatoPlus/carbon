@@ -1,6 +1,8 @@
 #include "ui.h"
 #include "opengl.h"
 
+//gonna overhaul the ui system later
+
 bool initImgui() {
 	ImGui::StyleColorsDark();
 	
