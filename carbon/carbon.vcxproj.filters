@@ -27,7 +27,7 @@
     <ClCompile Include="src/main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src/render/opengl.cpp">
+    <ClCompile Include="src\render\render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src/util/util.cpp">
@@ -72,6 +72,12 @@
     <ClCompile Include="src\texture\texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_game\testgame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src/util/buildinf.h">
@@ -92,7 +98,7 @@
     <ClInclude Include="src\main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src/render/opengl.h">
+    <ClInclude Include="src\render\render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src/util/util.h">
@@ -288,6 +294,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\texture\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test_game\testgame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

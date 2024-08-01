@@ -12,6 +12,9 @@
 // be created with that name. Read and write your objects
 // with ReadData and WriteData, they both are templates
 // so specify your own types (and please dont do dumb things with this).
+//
+// 7/31/2024
+// system information will also be stored in a class here for easy access.
 
 class config {
 	CSimpleIniA iniFile;

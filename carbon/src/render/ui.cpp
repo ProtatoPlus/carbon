@@ -1,5 +1,5 @@
 #include "ui.h"
-#include "opengl.h"
+#include "render.h"
 
 //gonna overhaul the ui system later
 

@@ -5,6 +5,8 @@
 #include <list>
 #include <string>
 
+#include <glm/gtc/type_ptr.hpp>
+
 bool loadAndCompile(const char[]);
 
 inline unsigned int backupVertexShader;
@@ -32,6 +34,7 @@ public:
 	void setInt(const std::string& name, int value) const;
 	void setFloat(const std::string& name, float value) const;
 	void setVec4(const std::string& name, float value[4]) const;
+	void setMat4(const std::string& name, glm::mat4 matrixIn) const;
 
 	bool fallbackVert;
 	bool fallbackFrag;

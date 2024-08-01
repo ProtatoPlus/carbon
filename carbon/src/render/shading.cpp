@@ -178,6 +178,9 @@ void Shader::setVec4(const std::string& name, float value[4]) const
 	glUniform4f(glGetUniformLocation(shaderProgram, name.c_str()), value[0], value[1], value[2], value[3]);
 	//glUniform4f(glGetUniformLocation(this->shaderProgram, name.c_str()), 1, 1, 1, 1);
 }
+void Shader::setMat4(const std::string& name, glm::mat4 matrixIn) const {
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrixIn));
+}
 
 bool loadAndCompile(const char* indexFile) {
 

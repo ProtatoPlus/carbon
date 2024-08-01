@@ -114,7 +114,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\imgui;$(ProjectDir)include;$(ProjectDir)include\glad;$(ProjectDir)include\glfw;$(ProjectDir)include\KHR;C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.22621.0;$(ProjectDir)lib\glfw;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\glm;$(ProjectDir)include\imgui;$(ProjectDir)include;$(ProjectDir)include\glad;$(ProjectDir)include\glfw;$(ProjectDir)include\KHR;C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.22621.0;$(ProjectDir)lib\glfw;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -134,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\imgui;$(ProjectDir)include;$(ProjectDir)include\glad;$(ProjectDir)include\glfw;$(ProjectDir)include\KHR;C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.22621.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\glm;$(ProjectDir)include\imgui;$(ProjectDir)include;$(ProjectDir)include\glad;$(ProjectDir)include\glfw;$(ProjectDir)include\KHR;C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.22621.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -155,17 +155,19 @@
     <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="include\imgui\imgui_tables.cpp" />
     <ClCompile Include="include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\engine\core.cpp" />
     <ClCompile Include="src\render\shading.cpp" />
     <ClCompile Include="src/util/config.cpp" />
     <ClCompile Include="src\render\glad\glad.c" />
     <ClCompile Include="src\texture\texture.cpp" />
     <ClCompile Include="src\util\logging.cpp" />
     <ClCompile Include="src/main.cpp" />
-    <ClCompile Include="src/render/opengl.cpp" />
+    <ClCompile Include="src\render\render.cpp" />
     <ClCompile Include="src/util/util.cpp" />
     <ClCompile Include="src/engine/window.cpp" />
     <ClCompile Include="src\ConvertUTF.c" />
     <ClCompile Include="src\render\ui.cpp" />
+    <ClCompile Include="test_game\testgame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\glad\glad.h" />
@@ -226,6 +228,7 @@
     <ClInclude Include="include\nlohmann\ordered_map.hpp" />
     <ClInclude Include="include\nlohmann\thirdparty\hedley\hedley.hpp" />
     <ClInclude Include="include\nlohmann\thirdparty\hedley\hedley_undef.hpp" />
+    <ClInclude Include="src\engine\core.h" />
     <ClInclude Include="src\render\shading.h" />
     <ClInclude Include="src/util/buildinf.h" />
     <ClInclude Include="src/util/config.h" />
@@ -235,11 +238,12 @@
     <ClInclude Include="src\util\logging.h" />
     <ClInclude Include="src\ConvertUTF.h" />
     <ClInclude Include="src\main.h" />
-    <ClInclude Include="src/render/opengl.h" />
+    <ClInclude Include="src\render\render.h" />
     <ClInclude Include="src/util/util.h" />
     <ClInclude Include="src/engine/window.h" />
     <ClInclude Include="src\util\SimpleIni.h" />
     <ClInclude Include="src\render\ui.h" />
+    <ClInclude Include="test_game\testgame.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="x64\shaders\0\frag.glsl" />

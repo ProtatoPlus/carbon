@@ -6,8 +6,17 @@
 #include <iostream>
 #include "engine/window.h"
 #include "render/shading.h"
+#include "engine/core.h"
 //#pragma comment(lib, "dxgi")
 //#pragma comment(lib, "d3d12")
+
+// for now game logic can be included via a header with the following methods
+//
+//      void gameLogic_Start(c_Carbon* p_CCarbon);
+//      void gameLogic_Render();
+//      void gameLogic_Update();
+
+#include "../test_game/testgame.h"
 
 // we will need to rewrite out entrypoint later on, fine for now though.
 
@@ -18,6 +27,11 @@ int main(int argc, char** argv) {
         return 1;
     }
     logMessage(INFO, "Carbon init started.");
+
+    c_Carbon CCarbon;
+    createGlobalEngineInstance(&CCarbon);
+
+    c_Carbon* p_CCarbon = &CCarbon;
 
     // we need to handle glfw initilization in a seperate class, possibly a generic "Engine" class to handle basics?
     if (!glfwInit()) {
@@ -39,7 +53,7 @@ int main(int argc, char** argv) {
         return 1;
     }*/
     //  i kinda want to mess around with opengl more before i keep working with d3d12, i still
-    //  have a lot to learn about graphics and i need to pace myself and do this the right way.
+    //  have a lot to learn about graphics programming and i need to pace myself and do this the right way. - d64
 
     //  Might as well learn vulkan for contributions - MRD
 

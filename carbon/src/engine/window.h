@@ -1,7 +1,7 @@
 #pragma once
 #include <glad.h>
 #include <glfw3.h>
-#include "../render/opengl.h"
+#include "../render/render.h"
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_opengl3.h>
 #include <imgui/imgui_impl_glfw.h>
